@@ -5,20 +5,32 @@ from itertools import cycle
 # URL for VinoDine API
 url = 'https://vinodine2-dxr2er4ueq-ew.a.run.app/predict'
 
-st.image("https://cdn.pixabay.com/photo/2024/05/05/23/00/ai-generated-8742016_1280.jpg", caption='VinoDine', output_format="auto")
+# st.image("https://cdn.pixabay.com/photo/2024/05/05/23/00/ai-generated-8742016_1280.jpg", caption='VinoDine', output_format="auto")
 
-st.markdown("<h4 style='text-align: center; '>Discover the perfect match of foods with your wine by answering these 5 questions</h4>", unsafe_allow_html=True)
+st.markdown("""<h4 style='text-align: center; '>Unlock your <b>perfect Wine and Food pairing</b> in just 5 questions!</h4>""", unsafe_allow_html=True)
 
-grapes = ['Abbuoto', 'Abouriou', 'Abrostine', 'Acolon', 'Agiorgitiko', 'Aglianico', 'Aidani', 'Airen', 'Albalonga', 'Albana', 'Albanella', 'Albariño', 'Albarola', 'Albarossa', 'Albarín Blanco', 'Albillo', 'Albillo Crimean', 'Albillo Mayor', 'Albillo de Albacete', 'Aleatico', 'Alfrocheiro Preto', 'Alibernet', 'Alicante Bouschet', 'Alicante Ganzin', 'Aligoté', 'Altesse', 'Alvarelhão', 'Alvarinho', 'Amigne', 'Ancellotta', 'Ansonica', 'Antão Vaz', 'Aragonez', 'Aramon', 'Arbane', 'Areni', 'Argaman', 'Arinarnoa', 'Arinto', 'Arinto de Bucelas', 'Arinto dos Açores', 'Arneis', 'Arnsburger', 'Arriloba', 'Aspiran Bouschet', 'Asprinio Bianco', 'Assario Branco', 'Assyrtiko', 'Athiri', 'Aurore', 'Avanà', 'Avesso', 'Avgoustiatis', 'Azal Branco', 'Azal Tinto', 'Babić', 'Bacchus', 'Baco Noir', 'Baga', 'Barbarossa', 'Barbera', 'Barcelo', 'Barsaglina', 'Bastardo Magarachsky', 'Batoca', 'Bellone', 'Bianca', 'Biancame', 'Bianchetta Trevigiana', "Bianco d'Alessano", 'Biancolella', 'Bical', 'Black Queen', 'Blauburger', 'Blauburgunder', 'Blauer Portugieser', 'Blaufränkisch', 'Boal Branco', 'Bobal', 'Bogazkere', 'Bombino Bianco', 'Bombino Nero', 'Bonamico', 'Bonarda', 'Bordô', 'Borraçal', 'Bosco', 'Bourboulenc', 'Bovale', 'Brachetto', 'Braquet', 'Braucol', 'Brianna', 'Bronner', 'Brun Argenté', 'Bruñal', 'Bual', 'Budai Zöld', 'Bukettraube', 'Burgund Mare', 'Busuioaca de Bohotin', 'Băbească Neagră', 'Cabernet Blanc', 'Cabernet Cortis', 'Cabernet Cubin', 'Cabernet Dorsa', 'Cabernet Franc', 'Cabernet Jura', 'Cabernet Mitos', 'Cabernet Ruby', 'Cabernet Sauvignon', 'Cabernet Severny', 'Cagnulari', 'Caiño Blanco', 'Caiño Tinto', 'Calabrese di Montenuovo', 'Caladoc', 'Calkarasi', 'Callet', 'Camarate', 'Canaiolo Blanco', 'Canaiolo Nero', 'Cannonau', 'Carignan/Cariñena', 'Carmenère', 'Carricante', 'Casavecchia', 'Cascade', 'Casetta', 'Castelão', 'Catarratto Bianco', 'Catawba', 'Cayuga White', 'Cencibel', 'Centesiminio', 'Cerceal Branco', 'Cesanese', 'Chambourcin', 'Chancellor', 'Charbono', 'Chardonel', 'Chardonnay', 'Chardonnay Musqué', 'Chasan', 'Chasselas', 'Chatus', 'Chenanson', 'Chenin Blanc', 'Chinuri', 'Cienna', 'Ciliegiolo', 'Cinsault', 'Clairette', 'Cococciola', 'Coda di Volpe Bianca', 'Colobel', 'Colombard', 'Coloraillo', 'Colorino del Valdarno', 'Concord', 'Corinto Nero', 'Cornalin', 'Cornifesto', 'Corot Noir', 'Cortese', 'Corvina', 'Corvinone', 'Couderc', 'Counoise', 'Criolla Grande', 'Croatina', 'Crouchen', 'Cynthiana', 'Côdega de Larinho', 'Côt', 'Dafni', 'Dakapo', 'De Chaunac', 'Debina', 'Diagalves', 'Dimiat', 'Dimrit', 'Dindarella', 'Diolinoir', 'Dolcetto', 'Domina', 'Dona Blanca', 'Donzelinho Branco', 'Donzelinho Tinto', 'Dornfelder', 'Drupeggio', 'Dunkelfelder', 'Duras', 'Durella', 'Durif', 'Dzvelshavi Obchuri', 'Edelweiss', 'Egiodola', 'Ehrenfelser', 'Emerald Riesling', 'Emir', 'Enantio', 'Encruzado', 'Erbaluce', 'Espadeiro', 'Falanghina', 'Falanghina Beneventana', 'Famoso', 'Favorita', 'Fenile', 'Fer Servadou', 'Fernão Pires', 'Feteasca Alba', 'Feteasca Neagra', 'Feteasca Regala', 'Fiano', 'Flora', 'Foglia Tonda', 'Fokiano', 'Folgasao', 'Folle Blanche', 'Fonte Cal', 'Fragolino', 'Francusa', 'Frappato', 'Fredonia', 'Freisa', 'Friulano/Sauvignonasse', 'Frontenac', 'Fruhroter Veltliner', 'Frühburgunder', 'Fumin', 'Fumé Blanc', 'Furmint', 'Gaglioppo', 'Gaidouria', 'Galotta', 'Gamaret', 'Gamay Noir', 'Gamay Teinturier de Bouze', 'Gamba di Pernice', 'Garanoir', 'Garganega', 'Garnacha', 'Garnacha Blanca', 'Garnacha Peluda', 'Garnacha Roja', 'Garnacha Tinta', 'Garnacha Tintorera', 'Garrido Fino', 'Gelber Muskateller', 'Gewürztraminer', 'Gigiac', 'Ginestra', 'Girgentina', 'Girò Blanc', 'Glera/Prosecco', 'Godello', 'Gold Traminer', 'Goldburger', 'Golubok', 'Gorgollasa', 'Goruli Mtsvane', 'Gouveio', 'Gouveio Real', 'Graciano', 'Grand Noir', 'Grasa de Cotnari', 'Grauburgunder', 'Grecanico', 'Grechetto', 'Grechetto Rosso', 'Greco', 'Greco Bianco', 'Greco Nero', 'Grenache', 'Grenache Blanc', 'Grenache Gris', 'Grignolino', 'Grillo', 'Gringet', 'Grolleau', 'Groppello', 'Gros Manseng', 'Gros Verdot', 'Grüner Veltliner', 'Guardavalle', 'Gutedel', 'Hanepoot', 'Helios', 'Hibernal', 'Hondarrabi Beltza', 'Hondarrabi Zuri', 'Humagne Blanche', 'Humagne Rouge', 'Huxelrebe', 'Hárslevelű', 'Incrocio Manzoni', 'Inzolia', 'Irsai Oliver', 'Isabella', 'Jacquère', 'Jaen', 'Jampal', 'Johannisberg', 'Johanniter', 'Juan Garcia', 'Kabar', 'Kadarka', 'Kakhet', 'Kakotrygis', 'Kalecik Karasi', 'Kangun', 'Karasakiz', 'Karmahyut', 'Katsano', 'Keratsuda', 'Kerner', 'Khikhvi', 'Királyleányka', 'Kisi', 'Klevner', 'Kokur Bely', 'Koshu', 'Kotsifali', 'Krasnostop Anapsky', 'Krasnostop Zolotovsky', 'Kratosija', 'Krstac', 'Kydonitsa', 'Kékfrankos', "L'Acadie Blanc", 'Lacrima', 'Lafnetscha', 'Lagrein', 'Lambrusco', 'Lampia', 'Landot Noir', 'Lauzet', 'Leanyka', 'Lefkada', 'Lemberger', "Len de l'El", 'Lenoir', 'Leon Millot', 'Liatiko', 'Limnio', 'Limniona', 'Listan Negro', "Loin de l'Oeil", 'Lorena', 'Loureiro', 'Macabeo', 'Madeleine Angevine', 'Magliocco Canino', 'Malagouzia', 'Malbec', 'Malbo Gentile', 'Malvar', 'Malvasia', 'Malvasia Bianca Lunga', 'Malvasia Fina', 'Malvasia Istriana', 'Malvasia Nera', 'Malvasia del Lazio', 'Malvasia di Candia', 'Malvasia di Lipari', 'Malvasia di Schierano', 'Malvazija Istarska', 'Mammolo', 'Mandilaria', 'Mandón', 'Manseng', 'Manteudo', 'Manto Negro', 'Manzoni Bianco', 'Maratheftiko', 'Marechal Foch', 'Maria Gomes', 'Marmajuelo', 'Marquette', 'Marsanne', 'Marselan', 'Marufo', 'Marzemino', 'Mataro', 'Maturana Blanca', 'Maturana Tinta', 'Mauzac Blanc', 'Mauzac Noir', 'Mavro', 'Mavro Kalavritino', 'Mavrodafni', 'Mavrotragano', 'Mavroudi Arachovis', 'Mavrud', 'Mayolet', 'Mazuelo', 'Melnik', 'Melody', 'Melon de Bourgogne', 'Mencia', 'Menoir', 'Merlot', 'Merseguera', 'Michet', 'Millot-Foch', 'Misket Cherven', 'Misket Vrachanski', 'Modrý Portugal', 'Molinara', 'Mollard', 'Monastrell', 'Mondeuse Noire', 'Monica', 'Montepulciano', 'Montuni', 'Moradella', 'Morava', 'Morellino', 'Morenillo', 'Moreto', 'Morio-Muskat', 'Moristel', 'Moschofilero', 'Moschomavro', 'Mouhtaro', 'Mourisco', 'Mourvedre', 'Mtsvane Kakhuri', 'Muscadelle', 'Muscadine', 'Muscardin', 'Muscat Bailey A', 'Muscat Black', 'Muscat Blanc', 'Muscat Early', 'Muscat Golden', 'Muscat Noir', 'Muscat Orange', 'Muscat Ottonel', 'Muscat Valvin', 'Muscat Yellow', 'Muscat of Alexandria', 'Muscat of Frontignan', 'Muscat of Hamburg', 'Muscat of Setúbal', 'Muscat/Moscatel Galego', 'Muscat/Moscatel Roxo', 'Muscat/Moscatel de Grano Menudo', 'Muscat/Moscatello Selvatico', 'Muscat/Moscato', 'Muscat/Moscato Bianco', 'Muscat/Moscato Giallo', 'Muscat/Moscato Rosa', 'Muscat/Moscato di Scanzo', 'Muscat/Muscatel', 'Muscat/Muskat Moravsky', 'Mustoasa de Maderat', 'Müller-Thurgau', 'Narince', 'Nascetta', 'Nasco', 'Nebbiolo', 'Negoska', 'Negrara Trentino', 'Negrara Veronese', 'Negrette', 'Negroamaro', 'Negru de Dragasani', 'Nerello Cappuccio', 'Nerello Mascalese', 'Neretta Cuneese', 'Nero Buono di Cori', "Nero d'Avola", 'Nero di Troia', 'Neuburger', 'Niagara', 'Niagara Blanc', 'Nieddera', 'Nielluccio', 'Noble', 'Nocera', 'Noiret', 'Norton', 'Nosiola', 'Nouvelle', 'Nuragus', 'Ojaleshi', 'Olasz Rizling', 'Ondenc', 'Orion', 'Orleans Gelb', 'Ortega', 'Ortrugo', 'Oseleta', 'Otskhanuri Sapere', 'Padeiro', 'Pagadebit', 'Palava', 'Pallagrello Bianco', 'Pallagrello Nero', 'Palomino', 'Pamid', 'Pampanuto', 'Parellada', 'Parraleta', 'Pascale', 'Passerina', 'Pavana', 'País/Mission', 'Pecorino', 'Pederna', 'Pedral', 'Pedro Ximenez', 'Pelaverga', 'Peloursin', 'Perera', 'Perle', 'Perricone', 'Perrum', 'Petit Courbu', 'Petit Manseng', 'Petit Meslier', 'Petit Rouge', 'Petit Verdot', 'Petite Arvine', 'Petite Milo', 'Petite Pearl', 'Petite Sirah', 'Peverella', 'Phoenix', 'Picardan', 'Piccola Nera', 'Picolit', 'Picpoul Blanc', 'Piedirosso', 'Pigato', 'Pignoletto', 'Pignolo', "Pineau D'Aunis", 'Pinenc', 'Pinot Auxerrois', 'Pinot Blanc', 'Pinot Grigio', 'Pinot Gris', 'Pinot Meunier', 'Pinot Nero', 'Pinot Noir', 'Pinotage', 'Piquepoul Blanc', 'Piquepoul Noir', 'Plavac Mali', 'Pollera Nera', 'Posip Bijeli', 'Poulsard', 'Premetta', 'Prensal', 'Preto Martinho', 'Prieto Picudo', 'Primitivo', 'Prié', 'Procanico', 'Prokupac', 'Prugnolo Gentile', 'Pugnitello', 'Pulcinculo', 'Rabigato', 'Rabo de Ovelha', 'Raboso Piave', 'Raboso Veronese', 'Ramisco', 'Rebo', 'Refosco', 'Refosco dal Peduncolo Rosso', 'Regent', 'Reichensteiner', 'Ribolla Gialla', 'Riesel', 'Rieslaner', 'Riesling', 'Riesling Itálico', 'Riesling Renano', 'Ripolo', 'Rivaner', 'Rkatsiteli', 'Robola', 'Roditis', 'Roesler', 'Rolle/Rollo', 'Romeiko', 'Romé', 'Rondinella', 'Rondo', 'Roobernet', 'Roscetto', 'Rosetta', 'Rossese', 'Rossignola', 'Rossola', 'Rotberger', 'Roter Veltliner', 'Rotgipfler', 'Rougeon', 'Roupeiro', 'Roussanne', "Roussette D'Ayze", 'Royal de Alloza', 'Rubin', 'Rubired', 'Ruché', 'Ruen', 'Rufete', 'Ruggine', 'Ruländer', 'Räuschling', 'Sabrevois', 'Sacy', 'Sagrantino', 'Samsó', 'Sangiovese', 'Saperavi', 'Sarba', 'Sauvignon Blanc', 'Sauvignon Gris', 'Savagnin Blanc', 'Savatiano', 'Scheurebe', 'Schiava', 'Schiava Gentile', 'Schiava Grigia', 'Schioppettino', 'Schwarzriesling', 'Schönburger', 'Sciacarello', 'Sciascinoso', 'Seara Nova', 'Segalin', 'Seibel', 'Sercial', 'Sercialinho', 'Seyval Blanc', 'Shiroka Melnishka', 'Sibirkovi', 'Sideritis', 'Siegerrebe', 'Silvaner/Sylvaner', 'Smederevka', 'Solaris', 'Sousão', 'Souvignier Gris', 'Spätburgunder', 'St. Croix', 'St. Laurent', 'Steuben', 'Sultana', 'Sultaniye', 'Sumoll', 'Sumoll Blanc', 'Susumaniello', 'Swenson White', 'Symphony', 'Syrah/Shiraz', 'Syriki', 'Szürkebarát', 'Sémillon', 'Síria', 'Tamaioasa Romaneasca', 'Tamarez', 'Tannat', 'Tarrango', 'Tazzelenghe', 'Tempranillo', 'Tempranillo Blanco', 'Teroldego', 'Terrano', 'Terrantez', 'Terret', 'Thrapsathiri', 'Tibouren', 'Timorasso', 'Tinta Amarela', 'Tinta Barroca', 'Tinta Caiada', 'Tinta Carvalha', 'Tinta Francisca', 'Tinta Madeira', 'Tinta Miúda', 'Tinta Negra Mole', 'Tinta Roriz', 'Tinta de Toro', 'Tinta del Pais', 'Tintilia', 'Tintilla', 'Tinto Cão', 'Tinto Fino', 'Tintore Di Tramonti', 'Tocai Friulano', 'Tocai Italico', 'Torbato', 'Torrontés', 'Touriga Franca', 'Touriga Nacional', 'Trajadura', 'Traminer', 'Traminette', 'Trebbiano', 'Trebbiano Giallo', 'Trebbiano Romagnolo', 'Trebbiano Toscano', "Trebbiano d'Abruzzo", 'Treixadura', 'Trepat', 'Trincadeira', 'Triomphe', 'Trollinger', 'Trousseau', 'Tsimlyansky Cherny', 'Tsolikouri', 'Turan', 'Turbiana', 'Ughetta di Canneto', 'Ugni Blanc', 'Ull de Llebre', 'Uva Rara', 'Vaccareze', 'Valdiguie', 'Valentino Nero', 'Verdeca', 'Verdejo', 'Verdelho', 'Verdello', 'Verdicchio', 'Verdiso', 'Verduzzo Friulano', 'Vermentino', 'Vermentino Nero', 'Vernaccia', 'Vernaccia di Oristano', 'Vernaccia di San Gimignano', 'Vernatsch', 'Vespaiola', 'Vespolina', 'Vidal Blanc', 'Vidiano', 'Vien de Nus', 'Vignoles', 'Vijiriega', 'Vilana', 'Villard Noir', 'Vincent', 'Vinhão', 'Viognier', 'Violeta', 'Viorica', 'Viosinho', 'Vital', 'Vitovska', 'Viura', 'Vranac', 'Weissburgunder', 'Welschriesling', 'Xarel-lo', 'Xinomavro', 'Xynisteri', 'Zalema', 'Zelen', 'Zengö', 'Zibibbo', 'Zierfandler', 'Zinfandel', 'Zinfandel White', 'Zlahtina', 'Zweigelt', 'Zéta', 'Água Santa', 'Öküzgözü']
+grapes = ['"BiancodAlessano"', '"LAcadieBlanc"', '"LendelEl"', '"LoindelOeil"', '"NerodAvola"', '"PineauDAunis"', '"RoussetteDAyze"', '"TrebbianodAbruzzo"', 'Abbuoto', 'Abouriou', 'Abrostine', 'Acolon', 'Agiorgitiko', 'Aglianico', 'Aidani', 'Airen', 'Albalonga', 'Albana', 'Albanella', 'Albariño', 'Albarola', 'Albarossa', 'AlbarínBlanco', 'Albillo', 'AlbilloCrimean', 'AlbilloMayor', 'AlbillodeAlbacete', 'Aleatico', 'AlfrocheiroPreto', 'Alibernet', 'AlicanteBouschet', 'AlicanteGanzin', 'Aligoté', 'Altesse', 'Alvarelhão', 'Alvarinho', 'Amigne', 'Ancellotta', 'Ansonica', 'AntãoVaz', 'Aragonez', 'Aramon', 'Arbane', 'Areni', 'Argaman', 'Arinarnoa', 'Arinto', 'ArintodeBucelas', 'ArintodosAçores', 'Arneis', 'Arnsburger', 'Arriloba', 'AspiranBouschet', 'AsprinioBianco', 'AssarioBranco', 'Assyrtiko', 'Athiri', 'Aurore', 'Avanà', 'Avesso', 'Avgoustiatis', 'AzalBranco', 'AzalTinto', 'Babić', 'Bacchus', 'BacoNoir', 'Baga', 'Barbarossa', 'Barbera', 'Barcelo', 'Barsaglina', 'BastardoMagarachsky', 'Batoca', 'Bellone', 'Bianca', 'Biancame', 'BianchettaTrevigiana', 'Biancolella', 'Bical', 'BlackQueen', 'Blauburger', 'Blauburgunder', 'BlauerPortugieser', 'Blaufränkisch', 'BoalBranco', 'Bobal', 'Bogazkere', 'BombinoBianco', 'BombinoNero', 'Bonamico', 'Bonarda', 'Bordô', 'Borraçal', 'Bosco', 'Bourboulenc', 'Bovale', 'Brachetto', 'Braquet', 'Braucol', 'Brianna', 'Bronner', 'BrunArgenté', 'Bruñal', 'Bual', 'BudaiZöld', 'Bukettraube', 'BurgundMare', 'BusuioacadeBohotin', 'BăbeascăNeagră', 'CabernetBlanc', 'CabernetCortis', 'CabernetCubin', 'CabernetDorsa', 'CabernetFranc', 'CabernetJura', 'CabernetMitos', 'CabernetRuby', 'CabernetSauvignon', 'CabernetSeverny', 'Cagnulari', 'CaiñoBlanco', 'CaiñoTinto', 'CalabresediMontenuovo', 'Caladoc', 'Calkarasi', 'Callet', 'Camarate', 'CanaioloBlanco', 'CanaioloNero', 'Cannonau', 'Carignan/Cariñena', 'Carmenère', 'Carricante', 'Casavecchia', 'Cascade', 'Casetta', 'Castelão', 'CatarrattoBianco', 'Catawba', 'CayugaWhite', 'Cencibel', 'Centesiminio', 'CercealBranco', 'Cesanese', 'Chambourcin', 'Chancellor', 'Charbono', 'Chardonel', 'Chardonnay', 'ChardonnayMusqué', 'Chasan', 'Chasselas', 'Chatus', 'Chenanson', 'CheninBlanc', 'Chinuri', 'Cienna', 'Ciliegiolo', 'Cinsault', 'Clairette', 'Cococciola', 'CodadiVolpeBianca', 'Colobel', 'Colombard', 'Coloraillo', 'ColorinodelValdarno', 'Concord', 'CorintoNero', 'Cornalin', 'Cornifesto', 'CorotNoir', 'Cortese', 'Corvina', 'Corvinone', 'Couderc', 'Counoise', 'CriollaGrande', 'Croatina', 'Crouchen', 'Cynthiana', 'CôdegadeLarinho', 'Côt', 'Dafni', 'Dakapo', 'DeChaunac', 'Debina', 'Diagalves', 'Dimiat', 'Dimrit', 'Dindarella', 'Diolinoir', 'Dolcetto', 'Domina', 'DonaBlanca', 'DonzelinhoBranco', 'DonzelinhoTinto', 'Dornfelder', 'Drupeggio', 'Dunkelfelder', 'Duras', 'Durella', 'Durif', 'DzvelshaviObchuri', 'Edelweiss', 'Egiodola', 'Ehrenfelser', 'EmeraldRiesling', 'Emir', 'Enantio', 'Encruzado', 'Erbaluce', 'Espadeiro', 'Falanghina', 'FalanghinaBeneventana', 'Famoso', 'Favorita', 'Fenile', 'FerServadou', 'FernãoPires', 'FeteascaAlba', 'FeteascaNeagra', 'FeteascaRegala', 'Fiano', 'Flora', 'FogliaTonda', 'Fokiano', 'Folgasao', 'FolleBlanche', 'FonteCal', 'Fragolino', 'Francusa', 'Frappato', 'Fredonia', 'Freisa', 'Friulano/Sauvignonasse', 'Frontenac', 'FruhroterVeltliner', 'Frühburgunder', 'Fumin', 'FuméBlanc', 'Furmint', 'Gaglioppo', 'Gaidouria', 'Galotta', 'Gamaret', 'GamayNoir', 'GamayTeinturierdeBouze', 'GambadiPernice', 'Garanoir', 'Garganega', 'Garnacha', 'GarnachaBlanca', 'GarnachaPeluda', 'GarnachaRoja', 'GarnachaTinta', 'GarnachaTintorera', 'GarridoFino', 'GelberMuskateller', 'Gewürztraminer', 'Gigiac', 'Ginestra', 'Girgentina', 'GiròBlanc', 'Glera/Prosecco', 'Godello', 'GoldTraminer', 'Goldburger', 'Golubok', 'Gorgollasa', 'GoruliMtsvane', 'Gouveio', 'GouveioReal', 'Graciano', 'GrandNoir', 'GrasadeCotnari', 'Grauburgunder', 'Grecanico', 'Grechetto', 'GrechettoRosso', 'Greco', 'GrecoBianco', 'GrecoNero', 'Grenache', 'GrenacheBlanc', 'GrenacheGris', 'Grignolino', 'Grillo', 'Gringet', 'Grolleau', 'Groppello', 'GrosManseng', 'GrosVerdot', 'GrünerVeltliner', 'Guardavalle', 'Gutedel', 'Hanepoot', 'Helios', 'Hibernal', 'HondarrabiBeltza', 'HondarrabiZuri', 'HumagneBlanche', 'HumagneRouge', 'Huxelrebe', 'Hárslevelű', 'IncrocioManzoni', 'Inzolia', 'IrsaiOliver', 'Isabella', 'Jacquère', 'Jaen', 'Jampal', 'Johannisberg', 'Johanniter', 'JuanGarcia', 'Kabar', 'Kadarka', 'Kakhet', 'Kakotrygis', 'KalecikKarasi', 'Kangun', 'Karasakiz', 'Karmahyut', 'Katsano', 'Keratsuda', 'Kerner', 'Khikhvi', 'Királyleányka', 'Kisi', 'Klevner', 'KokurBely', 'Koshu', 'Kotsifali', 'KrasnostopAnapsky', 'KrasnostopZolotovsky', 'Kratosija', 'Krstac', 'Kydonitsa', 'Kékfrankos', 'Lacrima', 'Lafnetscha', 'Lagrein', 'Lambrusco', 'Lampia', 'LandotNoir', 'Lauzet', 'Leanyka', 'Lefkada', 'Lemberger', 'Lenoir', 'LeonMillot', 'Liatiko', 'Limnio', 'Limniona', 'ListanNegro', 'Lorena', 'Loureiro', 'Macabeo', 'MadeleineAngevine', 'MaglioccoCanino', 'Malagouzia', 'Malbec', 'MalboGentile', 'Malvar', 'Malvasia', 'MalvasiaBiancaLunga', 'MalvasiaFina', 'MalvasiaIstriana', 'MalvasiaNera', 'MalvasiadelLazio', 'MalvasiadiCandia', 'MalvasiadiLipari', 'MalvasiadiSchierano', 'MalvazijaIstarska', 'Mammolo', 'Mandilaria', 'Mandón', 'Manseng', 'Manteudo', 'MantoNegro', 'ManzoniBianco', 'Maratheftiko', 'MarechalFoch', 'MariaGomes', 'Marmajuelo', 'Marquette', 'Marsanne', 'Marselan', 'Marufo', 'Marzemino', 'Mataro', 'MaturanaBlanca', 'MaturanaTinta', 'MauzacBlanc', 'MauzacNoir', 'Mavro', 'MavroKalavritino', 'Mavrodafni', 'Mavrotragano', 'MavroudiArachovis', 'Mavrud', 'Mayolet', 'Mazuelo', 'Melnik', 'Melody', 'MelondeBourgogne', 'Mencia', 'Menoir', 'Merlot', 'Merseguera', 'Michet', 'Millot-Foch', 'MisketCherven', 'MisketVrachanski', 'ModrýPortugal', 'Molinara', 'Mollard', 'Monastrell', 'MondeuseNoire', 'Monica', 'Montepulciano', 'Montuni', 'Moradella', 'Morava', 'Morellino', 'Morenillo', 'Moreto', 'Morio-Muskat', 'Moristel', 'Moschofilero', 'Moschomavro', 'Mouhtaro', 'Mourisco', 'Mourvedre', 'MtsvaneKakhuri', 'Muscadelle', 'Muscadine', 'Muscardin', 'Muscat/MoscatelGalego', 'Muscat/MoscatelRoxo', 'Muscat/MoscateldeGranoMenudo', 'Muscat/MoscatelloSelvatico', 'Muscat/Moscato', 'Muscat/MoscatoBianco', 'Muscat/MoscatoGiallo', 'Muscat/MoscatoRosa', 'Muscat/MoscatodiScanzo', 'Muscat/Muscatel', 'Muscat/MuskatMoravsky', 'MuscatBaileyA', 'MuscatBlack', 'MuscatBlanc', 'MuscatEarly', 'MuscatGolden', 'MuscatNoir', 'MuscatOrange', 'MuscatOttonel', 'MuscatValvin', 'MuscatYellow', 'MuscatofAlexandria', 'MuscatofFrontignan', 'MuscatofHamburg', 'MuscatofSetúbal', 'MustoasadeMaderat', 'Müller-Thurgau', 'Narince', 'Nascetta', 'Nasco', 'Nebbiolo', 'Negoska', 'NegraraTrentino', 'NegraraVeronese', 'Negrette', 'Negroamaro', 'NegrudeDragasani', 'NerelloCappuccio', 'NerelloMascalese', 'NerettaCuneese', 'NeroBuonodiCori', 'NerodiTroia', 'Neuburger', 'Niagara', 'NiagaraBlanc', 'Nieddera', 'Nielluccio', 'Noble', 'Nocera', 'Noiret', 'Norton', 'Nosiola', 'Nouvelle', 'Nuragus', 'Ojaleshi', 'OlaszRizling', 'Ondenc', 'Orion', 'OrleansGelb', 'Ortega', 'Ortrugo', 'Oseleta', 'OtskhanuriSapere', 'Padeiro', 'Pagadebit', 'Palava', 'PallagrelloBianco', 'PallagrelloNero', 'Palomino', 'Pamid', 'Pampanuto', 'Parellada', 'Parraleta', 'Pascale', 'Passerina', 'Pavana', 'País/Mission', 'Pecorino', 'Pederna', 'Pedral', 'PedroXimenez', 'Pelaverga', 'Peloursin', 'Perera', 'Perle', 'Perricone', 'Perrum', 'PetitCourbu', 'PetitManseng', 'PetitMeslier', 'PetitRouge', 'PetitVerdot', 'PetiteArvine', 'PetiteMilo', 'PetitePearl', 'PetiteSirah', 'Peverella', 'Phoenix', 'Picardan', 'PiccolaNera', 'Picolit', 'PicpoulBlanc', 'Piedirosso', 'Pigato', 'Pignoletto', 'Pignolo', 'Pinenc', 'PinotAuxerrois', 'PinotBlanc', 'PinotGrigio', 'PinotGris', 'PinotMeunier', 'PinotNero', 'PinotNoir', 'Pinotage', 'PiquepoulBlanc', 'PiquepoulNoir', 'PlavacMali', 'PolleraNera', 'PosipBijeli', 'Poulsard', 'Premetta', 'Prensal', 'PretoMartinho', 'PrietoPicudo', 'Primitivo', 'Prié', 'Procanico', 'Prokupac', 'PrugnoloGentile', 'Pugnitello', 'Pulcinculo', 'Rabigato', 'RabodeOvelha', 'RabosoPiave', 'RabosoVeronese', 'Ramisco', 'Rebo', 'Refosco', 'RefoscodalPeduncoloRosso', 'Regent', 'Reichensteiner', 'RibollaGialla', 'Riesel', 'Rieslaner', 'Riesling', 'RieslingItálico', 'RieslingRenano', 'Ripolo', 'Rivaner', 'Rkatsiteli', 'Robola', 'Roditis', 'Roesler', 'Rolle/Rollo', 'Romeiko', 'Romé', 'Rondinella', 'Rondo', 'Roobernet', 'Roscetto', 'Rosetta', 'Rossese', 'Rossignola', 'Rossola', 'Rotberger', 'RoterVeltliner', 'Rotgipfler', 'Rougeon', 'Roupeiro', 'Roussanne', 'RoyaldeAlloza', 'Rubin', 'Rubired', 'Ruché', 'Ruen', 'Rufete', 'Ruggine', 'Ruländer', 'Räuschling', 'Sabrevois', 'Sacy', 'Sagrantino', 'Samsó', 'Sangiovese', 'Saperavi', 'Sarba', 'SauvignonBlanc', 'SauvignonGris', 'SavagninBlanc', 'Savatiano', 'Scheurebe', 'Schiava', 'SchiavaGentile', 'SchiavaGrigia', 'Schioppettino', 'Schwarzriesling', 'Schönburger', 'Sciacarello', 'Sciascinoso', 'SearaNova', 'Segalin', 'Seibel', 'Sercial', 'Sercialinho', 'SeyvalBlanc', 'ShirokaMelnishka', 'Sibirkovi', 'Sideritis', 'Siegerrebe', 'Silvaner/Sylvaner', 'Smederevka', 'Solaris', 'Sousão', 'SouvignierGris', 'Spätburgunder', 'St.Croix', 'St.Laurent', 'Steuben', 'Sultana', 'Sultaniye', 'Sumoll', 'SumollBlanc', 'Susumaniello', 'SwensonWhite', 'Symphony', 'Syrah/Shiraz', 'Syriki', 'Szürkebarát', 'Sémillon', 'Síria', 'TamaioasaRomaneasca', 'Tamarez', 'Tannat', 'Tarrango', 'Tazzelenghe', 'Tempranillo', 'TempranilloBlanco', 'Teroldego', 'Terrano', 'Terrantez', 'Terret', 'Thrapsathiri', 'Tibouren', 'Timorasso', 'TintaAmarela', 'TintaBarroca', 'TintaCaiada', 'TintaCarvalha', 'TintaFrancisca', 'TintaMadeira', 'TintaMiúda', 'TintaNegraMole', 'TintaRoriz', 'TintadeToro', 'TintadelPais', 'Tintilia', 'Tintilla', 'TintoCão', 'TintoFino', 'TintoreDiTramonti', 'TocaiFriulano', 'TocaiItalico', 'Torbato', 'Torrontés', 'TourigaFranca', 'TourigaNacional', 'Trajadura', 'Traminer', 'Traminette', 'Trebbiano', 'TrebbianoGiallo', 'TrebbianoRomagnolo', 'TrebbianoToscano', 'Treixadura', 'Trepat', 'Trincadeira', 'Triomphe', 'Trollinger', 'Trousseau', 'TsimlyanskyCherny', 'Tsolikouri', 'Turan', 'Turbiana', 'UghettadiCanneto', 'UgniBlanc', 'UlldeLlebre', 'UvaRara', 'Vaccareze', 'Valdiguie', 'ValentinoNero', 'Verdeca', 'Verdejo', 'Verdelho', 'Verdello', 'Verdicchio', 'Verdiso', 'VerduzzoFriulano', 'Vermentino', 'VermentinoNero', 'Vernaccia', 'VernacciadiOristano', 'VernacciadiSanGimignano', 'Vernatsch', 'Vespaiola', 'Vespolina', 'VidalBlanc', 'Vidiano', 'ViendeNus', 'Vignoles', 'Vijiriega', 'Vilana', 'VillardNoir', 'Vincent', 'Vinhão', 'Viognier', 'Violeta', 'Viorica', 'Viosinho', 'Vital', 'Vitovska', 'Viura', 'Vranac', 'Weissburgunder', 'Welschriesling', 'Xarel-lo', 'Xinomavro', 'Xynisteri', 'Zalema', 'Zelen', 'Zengö', 'Zibibbo', 'Zierfandler', 'Zinfandel', 'ZinfandelWhite', 'Zlahtina', 'Zweigelt', 'Zéta', 'ÁguaSanta', 'Öküzgözü']
+st.write('Select the type of wine')
+Type  = st.selectbox('Type of the wine', options=['Red', 'White', 'Rose', 'Sparkling', 'Dessert/Port', 'Dessert'],
+                     placeholder='Choose the type of wine...', index=None, label_visibility='collapsed')
 
+st.write('Select the body of wine')
+Body  = st.selectbox('Body of the wine', options=['Very full-bodied','Full-bodied', 'Medium-bodied', 'Light-bodied','Very light-bodied'],
+                     placeholder='Choose the body of the wine...', index=None, label_visibility='collapsed')
 
-Type  = st.selectbox('Select the type of the wine', options=['Red', 'White', 'Rose', 'Sparkling', 'Dessert/Port', 'Dessert'], index=0)
-Body  = st.selectbox('Select the body of the wine', ['Very full-bodied','Full-bodied', 'Medium-bodied', 'Light-bodied','Very light-bodied'])
-Acidity = st.selectbox("Select the acidity of the wine", ['High', 'Medium', 'Low'])
-Grapes = st.multiselect("Select at least one name of grapes", grapes, default=["Pinot Noir"])
+st.write('Select the acidicity of the wine')
+Acidity = st.selectbox("acidity of  wine", options=['High', 'Medium', 'Low'],
+                       placeholder='Choose the acidity of the wine...', index=None, label_visibility='collapsed')
+
+st.write('Select at least of type of grapes')
+Grapes = st.multiselect("Type of grapes", options=grapes,
+                        placeholder='Select the type of the grapes...', label_visibility='collapsed')
+
 if Grapes == ['']:
     st.write("Please choose at least one sort of grapes")
-ABV = st.text_input("Provide the alcohol percentage (in %)", value=12.0)
+
+st.write("Provide the alcohol percentage (in %)")
+ABV = st.text_input("alcohol percentage", value=0.0, label_visibility='collapsed')
 if "," in ABV:
     ABV=ABV.replace(",",".")
 
@@ -41,23 +53,73 @@ if st.button('Results'):
         '''
         i = 1
         for food in response:
-            st.write(f'{i}. {food}')
+            if food == "Appetizer":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.loveandlemons.com/appetizers/", icon='🧑‍🍳', label="Discover tantalizing appetizer recipes in one click!")
+            elif food == "Beef":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.mob.co.uk/recipes/collections/mobs-best-beef-recipes", icon='🧑‍🍳', label="Check out amazing beef recipes with one click here!")
+            elif food == "Cured Meat":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.epicurious.com/ingredient/cured-meat", icon='🧑‍🍳', label="Explore delicious cured meat recipes with a single click!")
+            elif food == "Game Meat":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.bbc.co.uk/food/game", icon='🧑‍🍳', label="Embark here on a culinary adventure with game meat recipes!")
+            elif food == "Lamb":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.delish.com/cooking/recipe-ideas/g26886001/best-lamb-recipes/", icon='🧑‍🍳', label="Indulge in mouthwatering lamb recipes just a click away!")
+            elif food == "Pasta":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.foodandwine.com/pasta-noodles/pasta", icon='🧑‍🍳', label="Cliccate qui per una meravigliosa ricetta di pasta!")
+            elif food == "Pork":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.delicious.com.au/recipes/collections/gallery/53-life-changing-pork-recipes-for-easy-weeknight-meals/f0f1uli4", icon='🧑‍🍳', label="Dive into the world of pork recipes with just one click!")
+            elif food == "Poultry":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.foodandwine.com/poultry-dishes-7497047", icon='🧑‍🍳', label="Elevate your meals with poultry recipes at the click of a button!")
+            elif food == "Rich Fish":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.bbc.co.uk/food/oily_fish", icon='🧑‍🍳', label="Discover exquisite recipes featuring rich fish with a single click!")
+            elif food == "Shellfish":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.delicious.com.au/recipes/collections/gallery/40-shellfish-recipes-that-will-have-you-on-a-seafood-high/jjfk8a8v?page=2", icon='🧑‍🍳', label="Delight your taste buds with succulent shellfish recipes in one click!")
+            elif food == "Soft Cheese":
+                st.write(f'{i}. {food}, with the following suggestions of pairing :')
+                st.page_link("https://www.france44cheeseshop.com/blog/2024/1/8/soft-cheese-pairing-guide", icon='🧑‍🍳', label="Click here to dive into delicious soft cheese pairings!")
+            elif food == "Spicy Food":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.mob.co.uk/recipes/collections/spicy-recipes", icon='🧑‍🍳', label="Spice up your meals with tantalizing spicy food recipes at the click of a button!")
+            elif food == "Veal":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.foodandwine.com/meat-poultry/veal/veal", icon='🧑‍🍳', label="Enjoy tender and flavorful veal recipes with a single click!")
+            elif food == "Vegetarian":
+                st.write(f'{i}. {food}')
+                st.page_link("https://www.jamieoliver.com/recipes/category/special-diets/vegetarian/", icon='🧑‍🍳', label="Explore a world of vegetarian delights with just one click!")
             i += 1
 
-
-def title():
-    return 'Injecting HTML 🧙‍♂️'
-
+# foods = [‘Appetizer’, ‘Beef’, ‘Cured Meat’, ‘Game Meat’, ‘Lamb’, ‘Pasta’, ‘Pork’, ‘Poultry’, ‘Rich Fish’, ‘Shellfish’, ‘Soft Cheese’, ‘Spicy Food’, ‘Veal’, ‘Vegetarian’]
 
 def run():
     st.markdown("<h4 style='text-align: center; '>The creators of VinoDine</h4>", unsafe_allow_html=True)
     image_size = 120
 
+    # https://kitt.lewagon.com/camps/414/contracts
+    # document.querySelectorAll('tr').forEach(elt => {
+    #     const img = elt.getElementsByTagName('img');
+    #     if (img.length > 0) {
+    #         const name = elt.getElementsByTagName('td')[1].innerText;
+    #         const src = img[0].src;
+    #         console.log(`'${name}' : '${src}',`);
+    #     }
+    # });
+
+
+
     CREATORS = {
-        'Arjan' : 'https://avatars.githubusercontent.com/u/161768796?v=4',
-        'Florian' : 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710834888/uzueseo7zyyykjantnnn.jpg',
-        'James' : 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710833790/s6zy2sc8qsmrlf0g04ac.jpg',
-        'Tobias' : 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710264098/h5jfyf2dqi2lor5zdbc5.jpg'
+        'Arjan' : ['https://avatars.githubusercontent.com/u/161768796?v=4','http://www.linkedin.com/in/arjanangenent'],
+        'Florian' : ['https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710834888/uzueseo7zyyykjantnnn.jpg', 'https://www.linkedin.com/in/florian-haindl-05b848187/'],
+        'James' : ['https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710833790/s6zy2sc8qsmrlf0g04ac.jpg', 'https://www.linkedin.com/in/james-kubik-a982712bb/'],
+        'Tobias' : ['https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1710264098/h5jfyf2dqi2lor5zdbc5.jpg', 'https://linkedin.com/in/tobias-eckers']
     }
 
     CREATOR_CSS = f"""
@@ -81,21 +143,29 @@ def run():
         box-shadow: 0 0 4px #eee;
     }}
 
+
     .creator-card span {{
         text-align: center;
     }}
+
+    .creator-card a {{
+        text-align: center;
+        color: #FFFFFF;
+    }}
+
+
     """
 
-    # streamlit html injection seems to sensitive to new lines...
-    # remove that \ and the html gets displayed instead of being interpreted
+
     CREATOR_CARD = """\
         <div class="creator-card">
             <img src="{url}">
-            <span>{name}</span>
+             <span>{name}</span>
+             <a href={linkedin}><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" style="width: 30px; height: 30px;"></a>
         </div>
     """
 
-    creators = ''.join([CREATOR_CARD.format(name=f'{name.split()[0]}', url=url) for name, url in CREATORS.items()])
+    creators = ''.join([CREATOR_CARD.format(name=f'{name.split()[0]}', url=url[0], linkedin=url[1]) for name, url in CREATORS.items()])
 
     CREATOR_HTML = f"""
     <style>
@@ -106,6 +176,18 @@ def run():
     </div>
     """
 
+
     st.write(CREATOR_HTML, unsafe_allow_html=True)
 
+
 run()
+
+background_style = """
+.stApp {
+  background-image: url(https://cdn.pixabay.com/photo/2019/03/23/23/38/wine-4076627_1280.jpg);
+  background-size: cover;
+  opacity:1
+}
+"""
+
+st.markdown(f'<style>{background_style}</style>', unsafe_allow_html=True)
