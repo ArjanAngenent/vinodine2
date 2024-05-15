@@ -3,7 +3,7 @@ import requests
 from itertools import cycle
 
 # URL for VinoDine API
-url = 'https://vinodine2-dxr2er4ueq-ew.a.run.app/predict'
+url = 'https://vinodine3-dxr2er4ueq-ew.a.run.app/predict'
 
 # st.image("https://cdn.pixabay.com/photo/2024/05/05/23/00/ai-generated-8742016_1280.jpg", caption='VinoDine', output_format="auto")
 
